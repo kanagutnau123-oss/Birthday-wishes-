@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Angry Bird ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+.page{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+}
+
+.active{
+display:flex;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+h1{
+font-size:40px;
+color:gold;
+text-shadow:0 0 15px gold;
+margin-bottom:20px;
+}
+
+p{
+font-size:20px;
+line-height:1.8;
+max-width:700px;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:40px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px #ff4081;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+#photo{
+width:280px;
+height:380px;
+object-fit:cover;
+border-radius:20px;
+border:5px solid gold;
+box-shadow:0 0 25px gold;
+margin-bottom:20px;
+}
+
+.heart{
+position:fixed;
+bottom:-30px;
+font-size:24px;
+animation:float 8s linear forwards;
+}
+
+@keyframes float{
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+.firework{
+position:fixed;
+font-size:28px;
+animation:boom 1.2s forwards;
+}
+
+@keyframes boom{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(3);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="page1" class="page active">
+<h1>✨ A Special Surprise ✨</h1>
+<button onclick="page2()">Continue ❤️</button>
+</div>
+
+<div id="page2" class="page">
+<h1>Hello Angry Bird ❤️</h1>
+<p>Are you ready for your birthday surprise?</p>
+<br>
+<button onclick="page3()">YES 💖</button>
+</div>
+
+<div id="page3" class="page">
+<h1>🎂 Happy Birthday 🎂</h1>
+<h1>ANGRY BIRD ❤️</h1>
+
+<img id="photo" src="photo1.png">
+
+<p>
+Happy Birthday, Angry Bird ❤️
+<br><br>
+May your smile always brighten every heart around you.
+<br><br>
+May this year bring you happiness,
+good health,
+success,
+peace,
+and countless beautiful memories.
+<br><br>
+Always stay the amazing person you are.
+<br><br>
+❤️ Stay Blessed ❤️
+</p>
+</div>
+
+<script>
+
+function page2(){
+document.getElementById("page1").classList.remove("active");
+document.getElementById("page2").classList.add("active");
+}
+
+function page3(){
+document.getElementById("page2").classList.remove("active");
+document.getElementById("page3").classList.add("active");
+}
+
+const photos=[
+"photo1.png",
+"photo2.png",
+"photo3.png"
+];
+
+let index=0;
+
+setInterval(()=>{
+const img=document.getElementById("photo");
+if(!img) return;
+
+index=(index+1)%photos.length;
+img.src=photos[index];
+},3000);
+
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=Math.random()>0.5?"❤️":"💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),8000);
+},300);
+
+setInterval(()=>{
+let f=document.createElement("div");
+f.className="firework";
+f.innerHTML="🎆";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*70+"vh";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1200);
+},900);
+
+</script>
+
+</body>
+</html>
